@@ -1,0 +1,1 @@
+New-Item -ItemType SymbolicLink -Path "C:\Users\powel\AppData\Local" -Name "nvim" -Value "C:\Users\powel\.config\nvim"
