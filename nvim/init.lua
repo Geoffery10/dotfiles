@@ -36,49 +36,26 @@ local function setPlugins()
   end
   vim.opt.rtp:prepend(lazypath)
 
-  -- Setup lazy.nvim
   require("lazy").setup({
     change_detection = { notify = false },
     spec = {
-      -- import your plugins
       { import = "plugins" },
+      {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
+        dependencies = "nushell/tree-sitter-nu",
+        config = function()
+          require("nvim-treesitter.configs").setup({
+            ensure_installed = { "nu", "lua", "vim", "vimdoc" },
+            auto_install = true,
+            highlight = { enable = true },
+            indent = { enable = true },
+          })
+        end,
+      },
     },
-    -- Configure any other settings here. See the documentation for more details.
-    -- colorscheme that will be used when installing plugins.
     install = { colorscheme = { "habamax" } },
-    -- automatically check for plugin updates
     checker = { enabled = false },
-  })
-
-
-  -- NUSHELL
-  
-  require("lazy").setup({
-    -- NOTE: Use the official treesitter definition (nushell/tree-sitter-nu)
-    -- Syntax highlighing, code navigation etc..
-    -- The lua, vim and vimdoc one are optional but highly suggested for neovim.
-    {
-      "nvim-treesitter/nvim-treesitter",
-      build = ":TSUpdate",
-
-      dependencies = "nushell/tree-sitter-nu",
-      config = function()
-        -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-        ---@diagnostic disable-next-line: missing-fields
-        require("nvim-treesitter.configs").setup({
-          ensure_installed = {
-            "nu",
-            "lua",
-            "vim",
-            "vimdoc",
-          },
-          auto_install = true,
-          highlight = { enable = true },
-          indent = { enable = true },
-        })
-      end,
-    },
-
     -- NOTE: LSP
     -- lsp-config greatly simplifies the setup and has builtin support for nushell.
     -- --
