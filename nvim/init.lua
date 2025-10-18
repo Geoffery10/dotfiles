@@ -1,22 +1,20 @@
-local function setLeader()
-  vim.g.mapleader = " "
-  vim.g.maplocalleader = "\\"
-end
+-- Set leader keys
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
-local function setIndentation()
-  vim.opt.tabstop = 2
-  vim.opt.softtabstop = 2
-  vim.opt.shiftwidth = 2
-  vim.opt.expandtab = true
-  vim.opt.smartindent = true
-end
+-- Indentation settings
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+vim.opt.smartindent = true
 
-local function tweakDisplay()
-  vim.opt.wrap = false
-  vim.opt.number = true
-  vim.opt.relativenumber = false
-  vim.o.termguicolors = true
-end
+-- Display settings
+vim.opt.wrap = false
+vim.opt.number = true
+vim.opt.relativenumber = false
+vim.o.termguicolors = true
+
 
 local function setPlugins()
   -- Bootstrap lazy.nvim
@@ -126,7 +124,5 @@ local function setPlugins()
   })
 end
 
-setLeader()
-setIndentation()
-tweakDisplay()
+
 setPlugins()
